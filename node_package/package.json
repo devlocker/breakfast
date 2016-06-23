@@ -1,0 +1,24 @@
+{
+  "name": "breakfast-rails",
+  "version": "0.1.1",
+  "description": "Assets for the Breakfast Gem",
+  "main": "./lib/breakfast-rails.js",
+  "scripts": {
+    "test": "eslint index.js src",
+    "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib"
+  },
+  "author": "Patrick Koperwas",
+  "license": "MIT",
+  "dependencies": {
+    "actioncable": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^2.4.0"
+  },
+  "babel": {
+    "presets": ["es2015"]
+  }
+}
