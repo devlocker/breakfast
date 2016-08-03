@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html>
-
   {% include head.html %}
-
   <body>
-
     {% include header.html %}
 
     <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
+      <nav class="header-nav">
+        <a href="{{ '/' | prepend: site.baseurl }}">BREAKFAST
+        <small>Rails + Brunch.io = ❤️ </small>
+        </a href>
+        <img src="{{ site.baseurl }}/images/breakfast-illustration.png" width="100px" />
+      </nav>
+
+      <div class="docs">
+        <div class="docs-nav">
+          {% for section in site.data.navigation %}
+            <p class="seperator">{{ section.title }}</p>
+            <ul>
+              {% for link in section.links %}
+                {% assign current = nil %}
+
+                {% if page.url == link.url %}
+                  {% assign current = 'current' %}
+                {% endif %}
+
+                <li>
+                  <a class="{{ current }}" href="{{ link.url | prepend: site.baseurl }}">
+                    {{ link.text }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+
+          <p class="seperator">Source Code</p>
+          <ul>
+            <li><a href="https://github.com/devlocker/breakfast" target="_blank">View on Github</a></li>
+            <li><a href="https://www.npmjs.com/package/breakfast-rails" target="_blank">NPM Package</a></li>
+          </ul>
+        </div>
+
+        <div class="doc-content">
+          {{ content }}
+        </div>
       </div>
+
+      {% include footer.html %}
     </div>
-
-    {% include footer.html %}
-
   </body>
-
 </html>

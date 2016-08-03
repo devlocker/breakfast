@@ -1,0 +1,31 @@
+- getting_started:
+  title: Getting Started
+  links:
+    - text: Getting Started
+      url: /getting_started/
+    - text: Configuration
+      url: /getting_started/configuration.html
+    - text: The Brunch Config
+      url: /getting_started/brunch_config.html
+    - text: package.json
+      url: /getting_started/package_json.html
+    - text: Deployment
+      url: /getting_started/deployment.html
+
+- examples:
+  title: Examples
+  links:
+    - text: React
+      url: /examples/react.html
+    - text: Elm
+      url: /examples/elm.html
+    - text: Bootstrap
+      url: /examples/bootstrap.html
+
+- guides:
+  title: Guides
+  links:
+    - text: Customizing Asset Location
+      url: /guides/customizing_asset_location.html
+    - text: Multiple Build Files
+      url: /guides/multiple_build_files.html

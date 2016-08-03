@@ -9,11 +9,15 @@
 title: Breakfast
 email: patrick@devlocker.io
 description: >
-  Breakfast Gem
-baseurl: "/breakfast"
-url: "http://yourdomain.com"
+  Breakfast integrates modern Javascript tooling into your Rails project.
+
+  Get support for ES6 syntax & modules, live reload for CSS, JS, & HTML, and
+  NPM support. Be up and running on the latest frontend framework in minutes.
+baseurl: ""
+url: "http://breakfast.devlocker.io"
 twitter_username: patkoperwas
 github_username:  patkoperwas
 
 # Build settings
 markdown: kramdown
+exclude: [node_modules]

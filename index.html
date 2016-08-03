@@ -1,23 +1,92 @@
 ---
-layout: default
+layout: homepage
 ---
 
-<div class="home">
+<div class="homepage-hero">
+  <div>
+    <img src="{{ site.baseurl }}/images/breakfast-illustration.png" width="300px" />
+  </div>
 
-  <h1 class="page-heading">Posts</h1>
+  <h1>
+    BREAKFAST
+    <small>Rails + Brunch.io = ❤️ </small>
+  </h1>
+  <h2>Integrate modern Javascript tooling into your Rails project.</h2>
+</div>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+<div class="homepage-menu">
+  <a href="{{ '/getting_started' | prepend: site.baseurl }}">Getting Started</a href>
+  <a href="{{ '/getting_started/configuration' | prepend: site.baseurl }}">Configuration</a href>
+  <a href="https://github.com/devlocker/breakfast" target="_blank">Source Code</a>
+</div>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+<div>
+  <h2>Features</h2>
+  <div class="feature-example">
+    <div class="description">
+      <h3>ES6 Syntax</h3>
+      Get support for all the new <a href="https://github.com/lukehoban/es6features">ES6 Syntax</a>. Imports, exports, arrows, classes all work out of the cereal box.
+    </div>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+    <div class="example">
+{% highlight javascript %}
+import HelloWorld from "./hello"
 
+let App = {
+  init() {
+    HelloWorld.sayHello();
+  }
+};
+
+module.exports = App;
+{% endhighlight %}
+    </div>
+  </div>
+
+  <div class="feature-example">
+    <div class="description">
+      <h3>NPM Integration</h3>
+      Manage the frontend dependencies of your project with NPM. No more
+      copying or downloading unversioned scripts into the vendor folder.
+    </div>
+
+    <div class="example">
+{% highlight javascript %}
+{
+  "devDependencies": {
+    "babel-brunch": "~6.0.0",
+    "brunch": "~2.8.2",
+    "css-brunch": "^2.6.1",
+    "javascript-brunch": "~1.8.0",
+    "sass-brunch": "~2.6.3",
+  },
+  "dependencies": {
+    "actioncable": "^5.0.0",
+    "bootstrap": "^3.3.7",
+    "breakfast-rails": "0.0.7",
+    "jquery": "^3.1.0",
+    "turbolinks": "^5.0.0"
+  }
+}
+{% endhighlight %}
+    </div>
+  </div>
+
+  <div class="feature-example">
+    <div class="description">
+      <h3>Live Reloading</h3>
+      <p>
+        Have the browser automatically reload CSS, JS or HTML on save.  With
+        the incremental builds provided by <a href="http://brunch.io">Brunch</a>
+        watch changes propagate to the browser with speed.
+      </p>
+      <p>
+        No more alt-tab + ⌘-r
+      </p>
+    </div>
+
+    <div class="example">
+      <img src="{{ site.baseurl }}/images/live-reload-example-1.gif" width="100%" />
+    </div>
+  </div>
 </div>
