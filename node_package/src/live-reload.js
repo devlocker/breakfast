@@ -1,6 +1,8 @@
-const ActionCable = require('actioncable');
-
 class LiveReloader {
+  constructor(options = {}) {
+    this.options = options;
+  }
+
   buildFreshUrl(url) {
     const date = Math.round(Date.now() / 1000).toString();
     url = url.replace(/(\&|\\?)version=\d*/, '');
@@ -64,7 +66,7 @@ class LiveReloader {
     }
   }
 
-  init(options = {}) {
+  init() {
     const reloaders = {
       js: this.jsReload.bind(this),
       css: this.cssReload.bind(this),
@@ -72,16 +74,12 @@ class LiveReloader {
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-      const Breakfast = window.Breakfast || {};
-      Breakfast.options = options;
-
       const reloadChannel = 'Breakfast::LiveReloadChannel';
 
-      Breakfast.cable = ActionCable.createConsumer(`ws://${options.host}:${options.port}/cable`);
-      Breakfast.channel = Breakfast.cable.subscriptions.create(reloadChannel, {
+      this.options.cable.subscriptions.create(reloadChannel, {
         received: (data) => {
           const reloader = reloaders[data.extension];
-          reloader(options.reloadStrategies[data.extension]);
+          reloader(this.options.reloadStrategies[data.extension]);
         }
       });
     });

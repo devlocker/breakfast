@@ -11,7 +11,8 @@ module Breakfast
                 js: "#{Rails.configuration.breakfast.js_reload_strategy}",
                 css: "#{Rails.configuration.breakfast.css_reload_strategy}",
                 html: "#{Rails.configuration.breakfast.html_reload_strategy}"
-              }
+              },
+              statusBarLocation: "#{Rails.configuration.breakfast.status_bar_location}"
             });
           SCRIPT
         end

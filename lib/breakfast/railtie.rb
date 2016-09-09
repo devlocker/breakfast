@@ -13,6 +13,7 @@ module BrunchRails
       config.breakfast.asset_output_folders = [Rails.root.join("public")]
       config.breakfast.view_folders = [Rails.root.join("app", "views")]
       config.breakfast.environments = %w(development)
+      config.breakfast.status_bar_location = :bottom
     end
 
     initializer "breakfast.setup_view_helpers" do |app|
@@ -23,24 +24,14 @@ module BrunchRails
 
     config.after_initialize do |app|
       if config.breakfast.environments.include?(Rails.env) && defined?(Rails::Server)
-        @brunch_pid = Process.spawn("brunch watch")
-        Process.detach(@brunch_pid)
-
-        listen_to_paths = Array.wrap(config.breakfast.asset_output_folders) +
-          Array.wrap(config.breakfast.view_folders)
-
-        listener = ::Listen.to(*listen_to_paths) do |modified, added, removed|
-          files = modified + added + removed
-          extensions = ["css", "js", "html"].freeze
-
-          extensions.each do |extension|
-            if files.any? { |file| file.match(/\.#{extension}/) }
-              ActionCable.server.broadcast "breakfast_live_reload", { extension: extension }
-            end
-          end
+        Thread.new do
+          Breakfast::BrunchWatcher.spawn(log: Rails.logger)
         end
 
-        listener.start
+        Breakfast::CompilationListener.start(
+          asset_output_folders: config.breakfast.asset_output_folders,
+          view_folders: config.breakfast.view_folders
+        )
       end
     end
 
