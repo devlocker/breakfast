@@ -56,9 +56,14 @@ html, body {
 
 .feature-example {
   display: flex;
+  margin-bottom: 24px;
 
   .description {
     width: 50%;
+  }
+
+  img {
+    border: 1px solid #ccc;
   }
 
   .example {

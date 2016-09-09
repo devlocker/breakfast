@@ -98,7 +98,7 @@ To get them loaded onto the page use the `javascript_include_tag`,
 # In application.html.erb
 
 <head>
-  <%= stylesheet_link_tag "app.js" %>
+  <%= stylesheet_link_tag "app.css" %>
   <%= javascript_include_tag "vendor.js" %>
   <%= javascript_include_tag "app.js" %>
   <script>require('frontend/js/app').init();</script>
