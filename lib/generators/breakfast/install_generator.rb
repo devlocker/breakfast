@@ -4,9 +4,11 @@ module Breakfast
   module Generators
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
+      NODE_VERSION = 'v4.1.1'
+      NPM_VERSION  = '3.10.6'
 
       def install
-        if prerequisites_installed?
+        if node_prerequisites_installed?
           create_brunch_config
           create_package_json
           create_directory_structure
@@ -27,7 +29,7 @@ module Breakfast
 
             ---> ERROR - MISSING NODE & NPM
 
-            ---> Node & npm are required to run Breakfast.
+            ---> Node version >= #{NODE_VERSION} & npm version >= #{NPM_VERSION} are required to run Breakfast.
             ---> Please install them before attempting to continue.
             ---> https://nodejs.org
             ---> https://npmjs.org
@@ -38,8 +40,12 @@ module Breakfast
 
       private
 
-      def prerequisites_installed?
-        `which node`.present? && `which npm`.present?
+      def node_prerequisites_installed?
+        `which node`.present? && `which npm`.present? && node_versions_are_satisfactory?
+      end
+
+      def node_versions_are_satisfactory?
+        `node -v` >= NODE_VERSION && `npm -v` >= NPM_VERSION
       end
 
       def create_brunch_config
