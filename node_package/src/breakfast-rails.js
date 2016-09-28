@@ -1,13 +1,14 @@
 const LiveReloader = require('./live-reload');
 const StatusBar = require('./status-bar');
-const ActionCable = require('actioncable');
+const Settings = require('./settings');
 
 const BreakfastRails = {
   init(options = {}) {
-    options.cable = ActionCable.createConsumer(`ws://${options.host}:${options.port}/cable`);
+    window.Breakfast = (window.Breakfast || {});
 
-    const liveReloader = new LiveReloader(options);
-    const statusBar = new StatusBar(options);
+    const settings = new Settings(options);
+    const liveReloader = new LiveReloader(settings);
+    const statusBar = new StatusBar(settings);
 
     liveReloader.init();
     statusBar.init();

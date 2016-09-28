@@ -1,6 +1,8 @@
+const RELOAD_CHANNEL = 'Breakfast::LiveReloadChannel';
+
 class LiveReloader {
-  constructor(options = {}) {
-    this.options = options;
+  constructor(settings) {
+    this.settings = settings;
   }
 
   buildFreshUrl(url) {
@@ -52,7 +54,7 @@ class LiveReloader {
       case 'turbolinks':
         const location = window.top.location;
 
-        if (typeof Turbolinks !== 'undefined') {
+        if (this.turbolinksAvailable() && !this.onErrorPage()) {
           Turbolinks.visit(location);
         } else {
           location.reload();
@@ -66,20 +68,50 @@ class LiveReloader {
     }
   }
 
+  rubyReload(strategy) {
+    switch (strategy) {
+      case 'turbolinks':
+        const location = window.top.location;
+
+        if (this.turbolinksAvailable() && !this.onErrorPage()) {
+          Turbolinks.visit(location);
+        } else {
+          location.reload();
+        }
+        break;
+      case 'page':
+        window.top.location.reload();
+        break;
+      case 'off':
+        break;
+    }
+  }
+
+  turbolinksAvailable() {
+    return (typeof Turbolinks !== 'undefined');
+  }
+  // If user is on an error page and they fix the error and re-render using
+  // turbolinks than the CSS from the Rails error page will hang around. Will
+  // initiate a full refresh to get rid of it.
+  onErrorPage() {
+    return (document.title.indexOf('Exception caught') !== -1);
+  }
+
   init() {
     const reloaders = {
       js: this.jsReload.bind(this),
       css: this.cssReload.bind(this),
-      html: this.htmlReload.bind(this)
+      html: this.htmlReload.bind(this),
+      slim: this.htmlReload.bind(this),
+      haml: this.htmlReload.bind(this),
+      rb: this.rubyReload.bind(this)
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-      const reloadChannel = 'Breakfast::LiveReloadChannel';
-
-      this.options.cable.subscriptions.create(reloadChannel, {
+      this.settings.cable.subscriptions.create(RELOAD_CHANNEL, {
         received: (data) => {
           const reloader = reloaders[data.extension];
-          reloader(this.options.reloadStrategies[data.extension]);
+          reloader(this.settings.strategies[data.extension]);
         }
       });
     });

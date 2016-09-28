@@ -9,9 +9,10 @@ module BrunchRails
       config.breakfast.html_reload_strategy = :turbolinks
       config.breakfast.js_reload_strategy = :page
       config.breakfast.css_reload_strategy = :hot
+      config.breakfast.ruby_reload_strategy = :off
 
       config.breakfast.asset_output_folders = [Rails.root.join("public")]
-      config.breakfast.view_folders = [Rails.root.join("app", "views")]
+      config.breakfast.source_code_folders = [Rails.root.join("app")]
       config.breakfast.environments = %w(development)
       config.breakfast.status_bar_location = :bottom
     end
@@ -30,7 +31,7 @@ module BrunchRails
 
         Breakfast::CompilationListener.start(
           asset_output_folders: config.breakfast.asset_output_folders,
-          view_folders: config.breakfast.view_folders
+          source_code_folders: config.breakfast.source_code_folders
         )
       end
     end

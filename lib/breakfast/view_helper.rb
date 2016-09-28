@@ -7,10 +7,11 @@ module Breakfast
             require("breakfast-rails").init({
               host: "#{request.host}",
               port: #{request.port},
-              reloadStrategies: {
+              strategies: {
                 js: "#{Rails.configuration.breakfast.js_reload_strategy}",
                 css: "#{Rails.configuration.breakfast.css_reload_strategy}",
-                html: "#{Rails.configuration.breakfast.html_reload_strategy}"
+                html: "#{Rails.configuration.breakfast.html_reload_strategy}",
+                rb: "#{Rails.configuration.breakfast.ruby_reload_strategy}"
               },
               statusBarLocation: "#{Rails.configuration.breakfast.status_bar_location}"
             });

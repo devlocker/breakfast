@@ -2,7 +2,6 @@ require "pty"
 
 module Breakfast
   class BrunchWatcher
-    CHANNEL = "breakfast_status".freeze
     BRUNCH_COMMAND = "./node_modules/brunch/bin/brunch watch".freeze
 
     def self.spawn(log:)
@@ -26,7 +25,6 @@ module Breakfast
           log.debug output
 
           output = output.gsub(/\e\[([;\d]+)?m/, '')
-
           case output
           when /compiled/
             broadcast(status: "success", message: output.split("info: ").last)
@@ -46,7 +44,7 @@ module Breakfast
     private
 
     def broadcast(status:, message:)
-      ActionCable.server.broadcast(CHANNEL, {
+      ActionCable.server.broadcast(STATUS_CHANNEL, {
         status: status,
         message: message
       })
