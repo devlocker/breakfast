@@ -36,8 +36,13 @@ require "breakfast/capistrano"
 If you want roles besides `web` to run asset compilation modify the
 `breakfast_roles` option in `config/deploy.rb`
 
+Breakfast needs to run `npm` while deploying. If the npm installation is at a
+location different than `/usr/bin/npm` you will need to modify the
+`breakfast_npm_path` option.
+
 ~~~ruby
 set :breakfast_roles, -> { :web, :app }
+set :breakfast_npm_path, "/usr/bin/npm"
 ~~~
 
 The servers that run asset compilation will need to have `node` installed.
