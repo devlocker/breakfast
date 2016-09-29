@@ -2,7 +2,7 @@
   "repository": {},
   "dependencies": {
     "actioncable": "^5.0.0",
-    "breakfast-rails": "0.3.0",
+    "breakfast-rails": "0.3.1",
     "jquery": "^3.1.0",
     "jquery-ujs": "^1.2.2",
     "turbolinks": "^5.0.0"

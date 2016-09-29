@@ -39,8 +39,10 @@ class StatusBar {
 
   write(message, status) {
     const log = document.getElementById('breakfast-message-log');
-    log.innerHTML = message;
-    log.className = `breakfast-message-log-${ status }`;
+    if (log) {
+      log.innerHTML = message;
+      log.className = `breakfast-message-log-${ status }`;
+    }
   }
 
   handleClick(option) {
@@ -164,7 +166,7 @@ class StatusBar {
         .breakfast-status-bar .breakfast-menu {
           background-color: #1f1f1f;
           border-radius: 2px;
-          ${this.settings.statusBarLocation}: 26px;
+          ${this.settings.statusBarLocation}: 22px;
           display: none;
           left: 0;
           position: absolute;

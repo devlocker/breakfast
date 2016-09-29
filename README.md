@@ -36,7 +36,7 @@ View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/mast
 ### Upgrading
 #### Upgrading to `0.3.0` from `0.2.0`
 - Update gem with `bundle update breakfast`
-- Bump the `breakfast-rails` version in `package.json` to `0.3.0`
+- Bump the `breakfast-rails` version in `package.json` to `0.3.1`
 - Run `npm install`
 - If you have modified the `config.breakfast.view_folders` option you will need
   to replace it. The new option is `config.breakfast.source_code_folders` and it
