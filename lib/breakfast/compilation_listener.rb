@@ -10,10 +10,7 @@ module Breakfast
 
           ASSET_EXTENSIONS.each do |extension|
             if files.any? { |file| file.match(/\.#{extension}/) }
-              ActionCable.server.broadcast(
-                Breakfast::RELOAD_CHANNEL,
-                { extension: extension }
-              )
+              broadcast(Breakfast::RELOAD_CHANNEL, { extension: extension })
             end
           end
         end
@@ -25,17 +22,14 @@ module Breakfast
           SOURCE_CODE_EXTENSIONS.each do |extension|
             matched = files.select { |file| file.match(/\.#{extension}/) }
             if matched.present?
-              ActionCable.server.broadcast(
-                Breakfast::RELOAD_CHANNEL,
-                { extension: extension }
-              )
+              broadcast(Breakfast::RELOAD_CHANNEL, { extension: extension })
 
               file_names = matched
                 .map { |file| file.split("/").last }
                 .join(", ")
                 .truncate(60)
 
-              ActionCable.server.broadcast(Breakfast::STATUS_CHANNEL, {
+              broadcast(Breakfast::STATUS_CHANNEL, {
                 status: "success",
                 message: "saved: #{file_names}",
                 extension: extension
@@ -47,5 +41,9 @@ module Breakfast
       asset_listener.start
       rails_listener.start
     end
+  end
+
+  def self.broadcast(channel, data)
+    ActionCable.server.broadcast(channel, data)
   end
 end
