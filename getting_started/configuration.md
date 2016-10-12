@@ -70,7 +70,7 @@ config.breakfast.css_reload_strategy = :hot
 #   - :off
 #     Do nothing
 #
-config.breakfast.ruby_reload_strategy = :hot
+config.breakfast.ruby_reload_strategy = :off
 
 
 # Where compiled assets get outputted. Should match
