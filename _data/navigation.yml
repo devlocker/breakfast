@@ -9,6 +9,8 @@
       url: /getting_started/brunch_config.html
     - text: package.json
       url: /getting_started/package_json.html
+    - text: CI Environment
+      url: /getting_started/ci.html
     - text: Deployment
       url: /getting_started/deployment.html
 
