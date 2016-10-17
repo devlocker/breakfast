@@ -12,7 +12,7 @@ RSpec.describe Breakfast::CompilationListener do
   describe ".start" do
     it "will listen for changes to the asset output folder" do
       Breakfast::CompilationListener.start(
-        asset_output_folders: asset_dir,
+        asset_output_folder: asset_dir,
         source_code_folders: source_code_dir
       )
 
@@ -31,7 +31,7 @@ RSpec.describe Breakfast::CompilationListener do
 
     it "will listen for changes to the source code folders" do
       Breakfast::CompilationListener.start(
-        asset_output_folders: asset_dir,
+        asset_output_folder: asset_dir,
         source_code_folders: source_code_dir
       )
 
@@ -42,7 +42,7 @@ RSpec.describe Breakfast::CompilationListener do
 
         expect(Breakfast::CompilationListener).
           to have_received(:broadcast).with(
-            Breakfast::RELOAD_CHANNEL, 
+            Breakfast::RELOAD_CHANNEL,
             { extension: extension }
           )
 
