@@ -1,5 +1,9 @@
 # CHANGE LOG
 
+## 0.3.1 - 2016-10-19
+- Better support for determining if Server is running. Using puma, passneger,
+  etc. instead of the default rails server command now work.
+
 ## 0.3.0 - 2016-09-28
 
 ### Upgrading from `0.2.0`

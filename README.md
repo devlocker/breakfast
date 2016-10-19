@@ -15,6 +15,10 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
+### Latest Patch `0.3.1`
+- Allows Breakfast to run when Rails is started outside of bin/rails server,
+  i.e. bundle exec puma, passenger, thin, etc.
+
 ### Latest Release `0.3.0`
 #### Added
 - New status bar that allows the user to switch reload strategies on the fly
