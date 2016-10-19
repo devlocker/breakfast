@@ -41,9 +41,9 @@ module Breakfast
       asset_listener.start
       rails_listener.start
     end
-  end
 
-  def self.broadcast(channel, data)
-    ActionCable.server.broadcast(channel, data)
+    def self.broadcast(channel, data)
+      ActionCable.server.broadcast(channel, data)
+    end
   end
 end
