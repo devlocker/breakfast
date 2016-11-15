@@ -1,6 +1,6 @@
 {
   "name": "breakfast-rails",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Assets for the Breakfast Gem",
   "main": "./lib/breakfast-rails.js",
   "scripts": {

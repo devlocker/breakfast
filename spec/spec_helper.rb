@@ -1,6 +1,6 @@
-$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "rails/all"
-require 'breakfast'
+require "breakfast"
 
 RSpec.configure do |config|
   config.disable_monkey_patching!

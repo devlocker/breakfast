@@ -211,7 +211,7 @@ class StatusBar {
           display: flex;
           flex-grow: 1;
           height: 30px;
-          padding: 8px;
+          padding: 0 8px;
         }
 
         .breakfast-status-bar .breakfast-message-log-error {
