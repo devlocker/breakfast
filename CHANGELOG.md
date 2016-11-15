@@ -1,8 +1,58 @@
 # CHANGE LOG
 
+### 0.4.0 - 2016-11-14
+#### Upgrading to `0.4.0` from `0.3.0`
+- Update gem with `bundle update breakfast`
+- Bump the `breakfast-rails` version in `package.json` to `0.4.0`
+- Run `npm install`
+
+*Note* Now by default asset fingerprinting will be on by default in production.
+A copy of each with the original filename will be present as well, so any
+hard-coded links to assets will still work correctly.
+
+#### Added
+- Asset Digests. Now when deploying assets will have fingerprints added to their
+  file names. This allows browsers to aggressively cache your assets.
+- New Option: `breakfast.manifest.digest`. Defaults to false in development /
+  test and true everywhere else. When true, enables Rails to serve fingerprinted
+  assets.
+- Rake Commands to trigger certain behavior:
+  - `breakfast:assets:build`
+    Manually run a compilation step.
+  - `breakfast:assets:build_production`
+    Manually trigger a production build. This will cause assets to get minified.
+  - `breakfast:assets:digest`
+    Run through your compiled assets and add a fingerprint to each one. Creates
+    a copy, leaving a file with the original filename and a duplicate with an
+    md5 fingerprint.
+  - `breakfast:assets:clean`
+    Removes any assets from the output folder that are not specified in the
+    manifest file (removes out of date files).
+  - `breakfast:assets:nuke`
+    Removes manifest and fingerprinted assets from the output folder.
+- New Capistrano Option: `:breakfast_npm_install_command`
+  Defaults to just `install`. Can be overridden to redirect output to dev/null.
+  Example:
+
+  ```
+  set :breakfast_npm_install_command, "install > /dev/null 2>&1"
+  ```
+
+#### Changes
+- Fixed small CSS issue if box-sizing is not set border-box globally.
+
+
+#### Contributors
+Many many thanks to the contributors for this release!
+- [@patkoperwas](https://github.com/patkoperwas)
+- [@mikeastock](https://github.com/mikeastock)
+- [@HParker](https://github.com/HParker)
+
+
 ## 0.3.1 - 2016-10-19
 - Better support for determining if Server is running. Using puma, passneger,
   etc. instead of the default rails server command now work.
+
 
 ## 0.3.0 - 2016-09-28
 
