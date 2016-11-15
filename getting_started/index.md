@@ -182,11 +182,11 @@ Breakfast takes care of running Brunch for you while the Rails server is
 running. Should you want to run the Brunch build step on your own run:
 
 ~~~
-node_modules/brunch/bin/brunch build
+bin/rails breakfast:assets:build
 ~~~
 
 If you have installed Brunch globally with `npm install -g brunch` then you
-simply run:
+can also run:
 
 ~~~
 brunch build

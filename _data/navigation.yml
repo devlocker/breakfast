@@ -13,6 +13,8 @@
       url: /getting_started/ci.html
     - text: Deployment
       url: /getting_started/deployment.html
+    - text: Understanding Asset Digests
+      url: /getting_started/asset_digests.html
 
 - examples:
   title: Examples

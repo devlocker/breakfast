@@ -88,4 +88,9 @@ config.breakfast.source_code_folders = [Rails.root.join("app")]
 
 # Environments to run Breakfast in.
 config.breakfast.environments = %w(development)
+
+
+# Turn on Asset Fingerprinting. Defaults to true in
+# staging / production and false in development / test.
+config.breakfast.digest = true
 ~~~
