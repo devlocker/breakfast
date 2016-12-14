@@ -21,6 +21,8 @@
   links:
     - text: React
       url: /examples/react.html
+    - text: Vue
+      url: /examples/vue.html
     - text: Elm
       url: /examples/elm.html
     - text: Bootstrap
