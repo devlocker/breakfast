@@ -4,8 +4,8 @@ module Breakfast
   module Generators
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
-      NODE_VERSION = "v4.1.1"
-      NPM_VERSION  = "3.10.6"
+      NODE_VERSION = Gem::Version.new("4.1.1")
+      NPM_VERSION  = Gem::Version.new("3.10.6")
 
       def install
         if node_prerequisites_installed?
@@ -45,7 +45,15 @@ module Breakfast
       end
 
       def node_versions_are_satisfactory?
-        `node -v` >= NODE_VERSION && `npm -v` >= NPM_VERSION
+        installed_node_version >= NODE_VERSION && installed_npm_version >= NPM_VERSION
+      end
+
+      def installed_node_version
+        Gem::Version.new(`node -v`.tr("v", ""))
+      end
+
+      def installed_npm_version
+        Gem::Version.new(`npm -v`)
       end
 
       def create_brunch_config
