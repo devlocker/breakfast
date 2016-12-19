@@ -4,8 +4,8 @@ module Breakfast
   module Generators
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
-      NODE_VERSION = Gem::Version.new("4.1.1")
-      NPM_VERSION  = Gem::Version.new("3.10.6")
+      NODE_VERSION = Gem::Version.new("4.1.0")
+      NPM_VERSION  = Gem::Version.new("3.0.0")
 
       def install
         if node_prerequisites_installed?
