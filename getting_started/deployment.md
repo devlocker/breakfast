@@ -8,7 +8,7 @@ layout: default
 Deploying to Heroku is super simple. Just add the custom buildpack.
 
 ~~~
-heroku buildpacks:add --index 1 https://github.com/devlocker/heroku-buildpack-breakfast.git
+heroku buildpacks:add --index 2 https://github.com/devlocker/heroku-buildpack-breakfast.git
 ~~~
 
 
