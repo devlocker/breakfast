@@ -1,11 +1,18 @@
-sudo: false
+sudo: required
 language: ruby
 rvm:
   - 2.3.1
 before_install:
   - gem install bundler -v 1.12.5
-  - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
-  - npm install
+  - nvm install 7.4.0
+  - nvm use 7.4.0
+    # Repo for Yarn
+  - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq yarn
+  - yarn install
 
-env:
-  - TRAVIS_NODE_VERSION="6.1"
+cache:
+  directories:
+    - $HOME/.yarn-cache

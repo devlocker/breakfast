@@ -4,7 +4,7 @@ namespace :breakfast do
     on roles fetch(:breakfast_roles) do |host|
       within release_path do
         with rails_env: "#{fetch(:rails_env) || fetch(:stage)}" do
-          execute fetch(:breakfast_npm_path).to_sym, fetch(:breakfast_npm_install_command)
+          execute fetch(:breakfast_yarn_path).to_sym, fetch(:breakfast_yarn_install_command)
           execute :rails, "breakfast:assets:build_production"
           execute :rails, "breakfast:assets:digest"
         end
@@ -31,7 +31,7 @@ end
 namespace :load do
   task :defaults do
     set :breakfast_roles, -> { :web }
-    set :breakfast_npm_path, "/usr/bin/npm"
-    set :breakfast_npm_install_command, "install"
+    set :breakfast_yarn_path, "/usr/bin/yarn"
+    set :breakfast_yarn_install_comman, "install"
   end
 end

@@ -5,7 +5,6 @@ module Breakfast
     class InstallGenerator < Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
       NODE_VERSION = Gem::Version.new("4.1.0")
-      NPM_VERSION  = Gem::Version.new("3.0.0")
 
       def install
         if node_prerequisites_installed?
@@ -15,7 +14,7 @@ module Breakfast
           create_app_js_file
           create_app_scss_file
           create_gitkeep_files
-          run_npm_install
+          run_yarn_install
           add_node_modules_to_gitignore
 
           puts <<-SUCCESS.strip_heredoc
@@ -27,12 +26,12 @@ module Breakfast
         else
           puts <<-ERROR.strip_heredoc
 
-            ---> ERROR - MISSING NODE & NPM
+            ---> ERROR - MISSING NODE & YARN
 
-            ---> Node version >= #{NODE_VERSION} & npm version >= #{NPM_VERSION} are required to run Breakfast.
+            ---> Node version >= #{NODE_VERSION} & yarn are required to run Breakfast.
             ---> Please install them before attempting to continue.
             ---> https://nodejs.org
-            ---> https://npmjs.org
+            ---> https://yarnpkg.com/docs/install/
 
           ERROR
         end
@@ -41,19 +40,15 @@ module Breakfast
       private
 
       def node_prerequisites_installed?
-        `which node`.present? && `which npm`.present? && node_versions_are_satisfactory?
+        `which node`.present? && `which yarn`.present? && node_versions_are_satisfactory?
       end
 
       def node_versions_are_satisfactory?
-        installed_node_version >= NODE_VERSION && installed_npm_version >= NPM_VERSION
+        installed_node_version >= NODE_VERSION
       end
 
       def installed_node_version
         Gem::Version.new(`node -v`.tr("v", ""))
-      end
-
-      def installed_npm_version
-        Gem::Version.new(`npm -v`)
       end
 
       def create_brunch_config
@@ -84,13 +79,14 @@ module Breakfast
         create_file "app/frontend/vendor/.gitkeep"
       end
 
-      def run_npm_install
-        run "npm install"
+      def run_yarn_install
+        run "yarn install"
       end
 
       def add_node_modules_to_gitignore
         ignore = <<-IGNORE.strip_heredoc
           # Added by Breakfast Gem
+          yarn-error.log
           npm-debug.log
           node_modules/*
           public/assets/*
