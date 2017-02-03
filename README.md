@@ -5,7 +5,7 @@
 [Breakfast](http://breakfast.devlocker.io/) integrates modern Javascript
 tooling into your Rails project. Powered by [Brunch.io](http://brunch.io). 
 
-Get support for ES6 syntax & modules, live reload for CSS, JS, & HTML, and NPM
+Get support for ES6 syntax & modules, live reload for CSS, JS, & HTML, and Yarn
 support. Be up and running on the latest frontend framework in minutes.
 
 
