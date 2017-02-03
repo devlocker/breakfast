@@ -32,6 +32,6 @@ namespace :load do
   task :defaults do
     set :breakfast_roles, -> { :web }
     set :breakfast_yarn_path, "/usr/bin/yarn"
-    set :breakfast_yarn_install_comman, "install"
+    set :breakfast_yarn_install_command, "install"
   end
 end

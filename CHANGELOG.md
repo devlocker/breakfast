@@ -1,5 +1,27 @@
 # CHANGE LOG
 
+### 0.5.0 - 2017-02-03
+#### Added
+- Adds support for [Yarn](https://yarnpkg.com/).
+- New installs now require Yarn
+- Capistrano options `:breakfast_yarn_path` && `:breakfast_yarn_install_command`
+
+#### Removed
+- NPM client requirement
+- Capistrano options `:breakfast_npm_path` && `:breakfast_npm_install_command`
+  have been removed.
+
+### Upgrading
+#### Upgrading to `0.5.0` from `0.4.0`
+- Update gem with `bundle update breakfast`
+- Bump the `breakfast-rails` version in `package.json` to `0.5.0`
+- Ensure [Yarn](https://yarnpkg.com/docs/install) is installed
+- Run `yarn install`
+
+*Note* If you are deploying with Capistrano then Yarn is expected to be
+installed on
+
+
 ### 0.4.0 - 2016-11-14
 #### Upgrading to `0.4.0` from `0.3.0`
 - Update gem with `bundle update breakfast`
