@@ -1,5 +1,11 @@
 # CHANGE LOG
 
+### 0.5.1 - 2017-02-06
+#### Changed
+If `public/assets` does not exist Breakfast will now create the folder before
+attempting to write to it.
+
+
 ### 0.5.0 - 2017-02-03
 #### Added
 - Adds support for [Yarn](https://yarnpkg.com/).

@@ -15,6 +15,11 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
+### Latest Patch `0.5.1`
+#### Changed
+If `public/assets` does not exist Breakfast will now create the folder before
+attempting to write to it.
+
 ### Latest Release `0.5.0`
 #### Added
 - Adds support for [Yarn](https://yarnpkg.com/).
