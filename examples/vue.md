@@ -34,6 +34,24 @@ Version](https://vuejs.org/v2/guide/installation.html#Standalone-vs-Runtime-only
 as opposed to the runtime only. We need the standalone version to get the
 compiler and `template` options.
 
+## Ensure Templates Option is present in brunch-config
+In `brunch-config.js` ensure the `templates` option in `files` is set to this:
+
+~~~javascript
+files: {
+  javascripts: {
+   'app.js': /^app\/frontend\/js\//,
+   'vendor.js': /^(?!app\/frontend\/js)/
+  }
+  ...
+  // Make sure templates is there. New installs of Breakfast
+  // should have this by default.
+  templates: {
+    joinTo: 'app.js'
+  }
+}
+~~~
+
 ## Create a Component
 Create a components folder - `app/frontend/js/components`. As an example, create
 a file in the components folder called `Hello.vue` and add the following code in:
@@ -61,7 +79,7 @@ Assuming in your layout there is a div with an id of `root`, in
 `app/frontend/js/app.js` add the following:
 
 ~~~javascript
-import Hello from './components/hello';
+import Hello from './components/Hello';
 
 // Import this if you wish to use CSS in your .vue files.
 // See section below for more information.
