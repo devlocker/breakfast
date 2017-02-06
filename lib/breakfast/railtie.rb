@@ -1,4 +1,5 @@
 require "rails"
+require "fileutils"
 require "listen"
 
 module Breakfast
@@ -34,6 +35,9 @@ module Breakfast
       end
 
       if config.breakfast.environments.include?(Rails.env) && LocalEnvironment.new.running_server?
+        # Ensure public/assets directory exists
+        FileUtils.mkdir_p(Rails.root.join('public', 'assets'))
+
         Thread.new do
           Breakfast::BrunchWatcher.spawn(log: Rails.logger)
         end
