@@ -5,7 +5,7 @@ layout: default
 # Getting Started
 Breakfast integrates modern Javascript tooling into your Rails project.
 
-Get support for ES6 syntax & modules, live reload for CSS, JS, & HTML, and NPM
+Get support for ES6 syntax & modules, live reload for CSS, JS, & HTML, and Yarn
 support. Be up and running on the latest frontend framework in minutes.
 
 As you save your assets they will get compiled on the fly into bundles. Updates
@@ -26,7 +26,7 @@ notably get:
 “miscellanea”;
 > - Smart concatenation of these files towards one or more target files;
 > - Module wrapping of JavaScript files;
-> - Handling of front-end dependencies with NPM;
+> - Handling of front-end dependencies with Yarn;
 > - Maintenance of all relevant source maps;
 > - Minification of resulting files if we’re in “production mode”;
 > - Watching of source files to update the build on the fly.
@@ -34,7 +34,7 @@ notably get:
 ## Dependencies
 
 `Breakfast` at the moment only supports Rails 5.0+. You will also need `Node.js`
-and `npm` installed.
+and `Yarn` installed.
 
 
 ## Installation
@@ -66,7 +66,7 @@ $ rails generate breakfast:install
 	create  app/frontend/css/app.scss
 	create  app/frontend/images/.gitkeep
 	create  app/frontend/vendor/.gitkeep
-		 run  npm install from "."
+		 run  yarn install from "."
 ~~~
 
 Read the linked pages for more information on some of the generated files.
@@ -185,7 +185,7 @@ running. Should you want to run the Brunch build step on your own run:
 bin/rails breakfast:assets:build
 ~~~
 
-If you have installed Brunch globally with `npm install -g brunch` then you
+If you have installed Brunch globally with `yarn global add brunch` then you
 can also run:
 
 ~~~
@@ -204,7 +204,7 @@ For example, to add the [Pikaday](https://www.npmjs.com/package/pikaday)
 calender picker run:
 
 ~~~
-npm install --save pikaday
+yarn add pikaday
 ~~~
 
 This will add the latest version to the `package.json` and install the code into
@@ -213,7 +213,7 @@ the `node_modules` directory. To use the library, return to
 
 
 ~~~javascript
-const Pikaday = require("pikaday");
+import Pikaday fom "pikaday";
 
 let App = {
   init() {

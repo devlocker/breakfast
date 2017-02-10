@@ -11,7 +11,7 @@ project.
 In the root of your project directory run:
 
 ~~~
-npm install --save bootstrap copycat-brunch
+yarn add bootstrap copycat-brunch
 ~~~
 
 Open up your `brunch_config.js` and make the following modifications.

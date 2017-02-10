@@ -11,7 +11,7 @@ Get and install [Elm](http://elm-lang.org/install).
 Install elm-brunch plugin and elm dependencies:
 
 ~~~
-npm install --save elm-brunch
+yarn add elm-brunch
 elm package install
 ~~~
 

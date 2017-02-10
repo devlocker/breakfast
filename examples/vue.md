@@ -13,8 +13,8 @@ Components](https://vuejs.org/v2/guide/single-file-components.html).
 In the root of your project directory run:
 
 ~~~
-npm install --save vue
-npm install --save-dev vue-brunch vueify postcss-brunch babel-plugin-transform-runtime
+yarn add vue
+yarn add --dev vue-brunch vueify postcss-brunch babel-plugin-transform-runtime
 ~~~
 
 ## Expose Vue Globally
@@ -181,3 +181,12 @@ let App = {
   }
 }
 ~~~
+
+## Gotchas + Known Issues
+
+**Cannot find package when importing in `.vue` file:**
+
+This is a known issue. If the only place a package is imported is in a `.vue`
+file - it will throw an error about being unable to find a packge. To get around
+this, import package into any `.js` file. Usually I just stick them in my main
+`app.js`.

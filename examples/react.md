@@ -11,7 +11,7 @@ Getting started with [React](https://facebook.github.io/react/).
 In the root of your project directory run:
 
 ~~~
-npm install --save react react-dom babel-preset-react
+yarn add react react-dom babel-preset-react
 ~~~
 
 Open up your `brunch_config.js` and make the following modifications.
