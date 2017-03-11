@@ -10,11 +10,11 @@ module Breakfast
         if node_prerequisites_installed?
           create_brunch_config
           create_package_json
+          install_required_packages
           create_directory_structure
           create_app_js_file
           create_app_scss_file
           create_gitkeep_files
-          run_yarn_install
           add_node_modules_to_gitignore
 
           puts <<-SUCCESS.strip_heredoc
@@ -59,6 +59,11 @@ module Breakfast
         copy_file "package.json", "package.json"
       end
 
+      def install_required_packages
+        run "yarn add actioncable breakfast-rails jquery jquery-ujs turbolinks"
+        run "yarn add --dev brunch babel brunch clean-css-brunch sass-brunch uglify-js-brunch"
+      end
+
       def create_directory_structure
         empty_directory "app/frontend/css"
         empty_directory "app/frontend/images"
@@ -77,10 +82,6 @@ module Breakfast
       def create_gitkeep_files
         create_file "app/frontend/images/.gitkeep"
         create_file "app/frontend/vendor/.gitkeep"
-      end
-
-      def run_yarn_install
-        run "yarn install"
       end
 
       def add_node_modules_to_gitignore
