@@ -24,7 +24,7 @@ module Breakfast
           output = out.readpartial(64.kilobytes).strip
           log.debug output
 
-          output = output.gsub(/\e\[([;\d]+)?m/, '')
+          output = output.gsub(/\e\[([;\d]+)?m/, "")
           case output
           when /compiled/
             broadcast(status: "success", message: output.split("info: ").last)
