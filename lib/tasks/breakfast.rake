@@ -3,9 +3,16 @@ require "breakfast"
 
 namespace :breakfast do
   namespace :assets do
-    desc "Build assets"
-    task :build => :environment do
-      exec(Breakfast::BUILD_COMMAND)
+    desc "Prepare assets and digests for production deploy"
+    task compile: [:environment] do
+      exec(Breakfast::PRODUCTION_BUILD_COMMAND)
+
+      if Rails.configuration.breakfast.manifest
+        Rails.configuration.breakfast.manifest.digest!
+        Rails.configuration.breakfast.manifest.clean!
+      else
+        raise Breakfast::ManifestDisabledError
+      end
     end
 
     desc "Build assets for production"
@@ -39,6 +46,20 @@ namespace :breakfast do
         raise Breakfast::ManifestDisabledError
       end
     end
+  end
+
+  namespace :yarn do
+    desc "Install package.json dependencies with Yarn"
+    task :install do
+      exec("yarn")
+    end
+  end
+end
+
+if Rake::Task.task_defined?('assets:precompile')
+  Rake::Task['assets:precompile'].enhance do
+    Rake::Task['breakfast:yarn:install'].invoke
+    Rake::Task['breakfast:assets:compile'].invoke
   end
 end
 
