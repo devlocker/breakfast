@@ -1,5 +1,30 @@
 # CHANGE LOG
 
+### 0.6.0 - 2017-03-12
+#### Upgrading to `0.6.0` from `0.5.x`
+- Update gem with `bundle update breakfast`
+- Update the JS package with `yarn upgrade breakfast-rails`
+- If deploying with Capistrano, remove `require "breakfast/capistrano"` from
+  your `Capfile`. Remove any custom Breakfast settings from `config/deploy.rb`.
+  Ensure that you are using [Capistrano Rails](https://github.com/capistrano/rails)
+  and have `require 'capistrano/rails'` or `require 'capistrano/rails/assets'`
+  in your `Capfile`.
+- If deploying with Heroku, run the following commands:
+  1. heroku buildpacks:clear
+  2. heroku buildpacks:set heroku/nodejs --index 1
+  3. heroku buildpacks:set heroku/ruby --index 2
+#### Fixed
+- Puma hanging in clustered mode. Breakfast would fail to cleanly exit on Puma
+  exit, causing the server to hang indefinitely.
+- Bumped Rails version dependency, can be used with Rails 5.0 and greater.
+  (Allows usage with Rails 5.1)
+#### Removed
+- Capistrano rake tasks. Previous behavior has been included into the Rails
+  asset:precompile task. Using the standard [Capistrano Rails](https://github.com/capistrano/rails)
+  gem is all that required now.
+- Need for a custom Heroku buildpack.
+
+
 ### 0.5.1 - 2017-02-06
 #### Changed
 If `public/assets` does not exist Breakfast will now create the folder before
