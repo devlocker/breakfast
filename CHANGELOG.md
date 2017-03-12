@@ -1,5 +1,13 @@
 # CHANGE LOG
 
+### 0.6.0 - 2017-03-12
+#### Removed
+- Capistrano rake tasks. Previous behavior has been included into the Rails
+  asset:precompile task. Using the standard [Capistrano Rails](https://github.com/capistrano/rails)
+  gem is all that required now.
+- Need for a custom Heroku buildpack.
+
+
 ### 0.5.1 - 2017-02-06
 #### Changed
 If `public/assets` does not exist Breakfast will now create the folder before
