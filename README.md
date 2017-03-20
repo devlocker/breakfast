@@ -1,6 +1,7 @@
 <p align="center">
   <img src="http://breakfast.devlocker.io/images/breakfast-illustration.png" width="400" />
 </p>
+
 # Breakfast
 
 [Breakfast](http://breakfast.devlocker.io/) integrates modern Javascript
