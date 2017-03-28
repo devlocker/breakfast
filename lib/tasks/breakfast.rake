@@ -68,7 +68,7 @@ module Breakfast
     def initialize
       super(
         <<~ERROR
-          Rails.configuration.breakfast.manifest is set to false.
+          ::Rails.configuration.breakfast.manifest is set to false.
           Enable it by adding the following in your environment file:
 
             config.breakfast.manifest.digest = true
