@@ -7,7 +7,7 @@ namespace :breakfast do
     task compile: [:environment] do
       Rake::Task['breakfast:assets:build_production'].execute
       Rake::Task['breakfast:assets:digest'].execute
-      Rake::Task['breakfast:assets:clean'].execute
+      #Rake::Task['breakfast:assets:clean'].execute
     end
 
     desc "Build assets for production"
