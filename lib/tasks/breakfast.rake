@@ -12,7 +12,7 @@ namespace :breakfast do
 
     desc "Build assets for production"
     task build_production: :environment do
-      system "NODE_ENV=production ./node_modules/brunch/bin/brunch build --production"
+      system "./node_modules/brunch/bin/brunch build"
     end
 
     desc "Build assets"
