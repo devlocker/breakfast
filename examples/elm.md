@@ -23,7 +23,7 @@ Configure plugin:
 ~~~javascript
 plugins: {
   elmBrunch: {
-    mainModule: ['app/frontend/js/elm/Main.elm'],
+    mainModules: ['app/frontend/js/elm/Main.elm'],
     outputFile: 'elm.js',
     outputFolder: "public/assets/"
   },
