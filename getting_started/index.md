@@ -213,7 +213,7 @@ the `node_modules` directory. To use the library, return to
 
 
 ~~~javascript
-import Pikaday fom "pikaday";
+import Pikaday from "pikaday";
 
 let App = {
   init() {
