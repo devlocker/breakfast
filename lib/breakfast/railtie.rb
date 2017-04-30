@@ -40,8 +40,13 @@ module Breakfast
         FileUtils.mkdir_p(::Rails.root.join('public', 'assets'))
 
         # Start Brunch Process
-        Thread.new do
-          Breakfast::BrunchWatcher.spawn(log: ::Rails.logger)
+        @brunch = Breakfast::BrunchWatcher.new(log: ::Rails.logger)
+        Thread.start do
+          @brunch.run
+        end
+
+        at_exit do
+          @brunch.terminate
         end
 
         # Setup file listeners

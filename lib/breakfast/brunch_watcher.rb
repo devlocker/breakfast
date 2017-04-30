@@ -4,17 +4,14 @@ module Breakfast
   class BrunchWatcher
     BRUNCH_COMMAND = "./node_modules/brunch/bin/brunch watch".freeze
 
-    def self.spawn(log:)
-      new(log: log).run
-    end
-
+    attr_accessor :pid
     attr_reader :log
     def initialize(log:)
       @log = log
     end
 
     def run
-      out, writer, pid = PTY.spawn(BRUNCH_COMMAND)
+      out, writer, self.pid = PTY.spawn(BRUNCH_COMMAND)
       writer.close
 
       Process.detach(pid)
@@ -39,6 +36,13 @@ module Breakfast
           message: "Watcher died unexpectedly. Restart Rails server"
         )
       end
+    end
+
+    def terminate
+      Process.kill("TERM", @pid)
+    rescue Errno::ESRCH
+      # NOOP. Process exited cleanly or already terminated. Don't print
+      # exception to STDOUT
     end
 
     private
