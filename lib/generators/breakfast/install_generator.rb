@@ -9,7 +9,7 @@ module Breakfast
       def install
         if node_prerequisites_installed?
           create_brunch_config
-          create_package_json
+          create_package_json if using_rails_5_dot_0?
           install_required_packages
           create_directory_structure
           create_app_js_file
@@ -94,6 +94,10 @@ module Breakfast
         IGNORE
 
         append_to_file(".gitignore", ignore)
+      end
+
+      def using_rails_5_dot_0?
+        Gem::Version.new(::Rails.version) < Gem::Version.new("5.1")
       end
     end
   end

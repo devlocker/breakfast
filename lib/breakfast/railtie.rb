@@ -37,7 +37,7 @@ module Breakfast
       if config.breakfast.environments.include?(::Rails.env) && Breakfast::LocalEnvironment.new.running_server?
 
         # Ensure public/assets directory exists
-        FileUtils.mkdir_p(::Rails.root.join('public', 'assets'))
+        FileUtils.mkdir_p(::Rails.root.join("public", "assets"))
 
         # Start Brunch Process
         @brunch = Breakfast::BrunchWatcher.new(log: ::Rails.logger)
