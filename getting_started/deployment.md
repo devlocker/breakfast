@@ -5,16 +5,28 @@ layout: default
 # Deployment
 
 ## Heroku
-Deploying to Heroku is super simple. Just add the custom buildpack.
+Deploying to Heroku is super simple. Just add the NodeJS buildpack
+
+~~~
+heroku buildpacks:clear
+heroku buildpacks:set heroku/nodejs --index 1
+heroku buildpacks:set heroku/ruby --index 2
+~~~
+
+## Heroku for older versions of Breakfast (0.5.x and earlier)
+Add the custom buildpack
 
 ~~~
 heroku buildpacks:add --index 2 https://github.com/devlocker/heroku-buildpack-breakfast.git
 ~~~
 
-
-
 ## Capistrano V3 
 
+Breakfast plugs into the `assets:precompile` task. So as long as you have
+[Capistrano Rails](https://github.com/capistrano/rails) and `node`  installed
+there is nothing else you need to do.
+
+## Capistrano for older versions of Breakfast (0.5.x and earlier)
 Breakfast ships with deploy tasks for Capistrano V3.
 
 In your `Capfile`
