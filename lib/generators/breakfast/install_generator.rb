@@ -2,19 +2,19 @@ require "rails/generators"
 
 module Breakfast
   module Generators
-    class InstallGenerator < Rails::Generators::Base
+    class InstallGenerator < ::Rails::Generators::Base
       source_root File.expand_path("../templates", __FILE__)
       NODE_VERSION = Gem::Version.new("4.1.0")
 
       def install
         if node_prerequisites_installed?
           create_brunch_config
-          create_package_json
+          create_package_json if using_rails_5_dot_0?
+          install_required_packages
           create_directory_structure
           create_app_js_file
           create_app_scss_file
           create_gitkeep_files
-          run_yarn_install
           add_node_modules_to_gitignore
 
           puts <<-SUCCESS.strip_heredoc
@@ -59,6 +59,11 @@ module Breakfast
         copy_file "package.json", "package.json"
       end
 
+      def install_required_packages
+        run "yarn add actioncable breakfast-rails jquery jquery-ujs turbolinks"
+        run "yarn add --dev brunch babel brunch clean-css-brunch sass-brunch uglify-js-brunch"
+      end
+
       def create_directory_structure
         empty_directory "app/frontend/css"
         empty_directory "app/frontend/images"
@@ -79,10 +84,6 @@ module Breakfast
         create_file "app/frontend/vendor/.gitkeep"
       end
 
-      def run_yarn_install
-        run "yarn install"
-      end
-
       def add_node_modules_to_gitignore
         ignore = <<-IGNORE.strip_heredoc
           # Added by Breakfast Gem
@@ -93,6 +94,10 @@ module Breakfast
         IGNORE
 
         append_to_file(".gitignore", ignore)
+      end
+
+      def using_rails_5_dot_0?
+        Gem::Version.new(::Rails.version) < Gem::Version.new("5.1")
       end
     end
   end

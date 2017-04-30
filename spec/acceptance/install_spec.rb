@@ -7,10 +7,13 @@ RSpec.describe "Installing the Gem" do
       rails_dir = Dir.mktmpdir
 
       %x{rails new #{rails_dir}}
-      open("#{rails_dir}/Gemfile", "a") { |file| file.write('gem "breakfast"') }
+
+      open("#{rails_dir}/Gemfile", "a") do |file|
+        file.write("gem 'breakfast', path: '#{Dir.pwd}'")
+      end
 
       %x{cd #{rails_dir} && bundle install}
-      %x{cd #{rails_dir} && rails generate breakfast:install}
+      %x{cd #{rails_dir} && bundle exec rails generate breakfast:install}
       %x{cd #{rails_dir} && node_modules/brunch/bin/brunch build}
 
       expect(File).to exist("#{rails_dir}/brunch-config.js")

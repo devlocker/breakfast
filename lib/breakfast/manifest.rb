@@ -68,7 +68,7 @@ module Breakfast
       files_to_keep = cache.keys.concat(cache.values)
 
       if (sprockets_manifest = Dir.entries("#{base_dir}").detect { |entry| entry =~ SPROCKETS_MANIFEST_REGEX })
-        files_to_keep.concat(JSON.parse(File.read("#{base_dir}/#{sprockets_manifest}"))["files"].keys)
+        files_to_keep.concat(JSON.parse(File.read("#{base_dir}/#{sprockets_manifest}")).fetch("files", {}).keys)
       end
 
       Dir["#{base_dir}/**/*"].each do |path|

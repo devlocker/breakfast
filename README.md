@@ -17,31 +17,34 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
-### Latest Patch `0.5.1`
-#### Changed
-If `public/assets` does not exist Breakfast will now create the folder before
-attempting to write to it.
-
-### Latest Release `0.5.0`
-#### Added
-- Adds support for [Yarn](https://yarnpkg.com/).
-- New installs now require Yarn
-- Capistrano options `:breakfast_yarn_path` && `:breakfast_yarn_install_command`
-
+### Latest Release `0.6.0`
+#### Fixed
+- Puma hanging in clustered mode. Breakfast would fail to cleanly exit on Puma
+  exit, causing the server to hang indefinitely.
+- Bumped Rails version dependency, can be used with Rails 5.0 and greater.
+  (Allows usage with Rails 5.1)
 #### Removed
-- NPM client requirement
-- Capistrano options `:breakfast_npm_path` && `:breakfast_npm_install_command`
-  have been removed.
+- Capistrano rake tasks. Previous behavior has been included into the Rails
+  asset:precompile task. Using the standard [Capistrano Rails](https://github.com/capistrano/rails)
+  gem is all that required now.
+- Need for a custom Heroku buildpack.
 
 ### Upgrading
-#### Upgrading to `0.5.0` from `0.4.0`
+#### Upgrading to `0.6.0` from `0.5.x`
 - Update gem with `bundle update breakfast`
-- Bump the `breakfast-rails` version in `package.json` to `0.5.0`
-- Ensure [Yarn](https://yarnpkg.com/docs/install) is installed
-- Run `yarn install`
+- Update the JS package with `yarn upgrade breakfast-rails`
+- If deploying with Capistrano, remove `require "breakfast/capistrano"` from
+  your `Capfile`. Remove any custom Breakfast settings from `config/deploy.rb`.
+  Ensure that you are using [Capistrano Rails](https://github.com/capistrano/rails)
+  and have `require 'capistrano/rails'` or `require 'capistrano/rails/assets'`
+  in your `Capfile`.
+- If deploying with Heroku, run the following commands:
+  1. heroku buildpacks:clear
+  2. heroku buildpacks:set heroku/nodejs --index 1
+  3. heroku buildpacks:set heroku/ruby --index 2
 
 *Note* If you are deploying with Capistrano then Yarn is expected to be
-installed on
+installed on the hosts your are deploying to.
 
 ### Contributing
 Bug reports and pull requests are welcome on GitHub at
