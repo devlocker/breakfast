@@ -118,9 +118,18 @@ module Breakfast
     end
 
     def asset_paths
+      puts "DEBUG: ASSET PATHS METHOD"
+      all_files = Dir["#{base_dir}/**/*"]
+      puts "DEBUG: BASE DIR ALL FILES: #{all_files}"
       Dir["#{base_dir}/**/*"]
-        .reject { |path| File.directory?(path) || path =~ FINGERPRINT_REGEX }
-        .map { |file| Pathname(file).relative_path_from(base_dir) }
+        .reject do |path| 
+          puts "DEBUG: INSPECTING PATH: #{path}"
+          puts "DEBUG: SHOULD REJECT #{path}?  #{File.directory?(path) || path =~ FINGERPRINT_REGEX}"
+          File.directory?(path) || path =~ FINGERPRINT_REGEX 
+        end.map do |file| 
+          puts "DEBUG: CREATING PATHNAME FOR: #{file}"
+          Pathname(file).relative_path_from(base_dir)
+        end
     end
   end
 end
