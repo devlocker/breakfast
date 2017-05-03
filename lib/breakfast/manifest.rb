@@ -14,6 +14,7 @@ module Breakfast
 
       @base_dir = Pathname.new(base_dir)
       @manifest_path = find_manifest_or_create
+      puts "DEBUG: MANIFEST PATH - #{@manifest_path}"
       @cache = update_cache!
     end
 
@@ -45,18 +46,27 @@ module Breakfast
     #     - logo.png
     #     - logo-869269cdf1773ff0dec91bafb37310ea.png
     def digest!
+      puts "DEBUG: ########### STARING DIGEST ############"
+      puts "DEBUG: MANIFEST_PATH - #{manifest_path}"
+      puts "DEBUG: BASE_DIR - #{base_dir}"
+      puts "DEBUG: ASSET PATHS - #{asset_paths}"
       assets = asset_paths.map do |path|
         digest = Digest::MD5.new
         digest.update(File.read("#{base_dir}/#{path}"))
 
+        puts "DEBUG: COPYING ASSET TO - #{path}"
         digest_path = "#{path.sub_ext('')}-#{digest.hexdigest}#{File.extname(path)}"
 
+        puts "DEBUG: COPYING ASSET TO DIGEST_PATH - #{digest_path}"
         FileUtils.cp("#{base_dir}/#{path}", "#{base_dir}/#{digest_path}")
 
         [path, digest_path]
       end
+      puts "DONE DEBUGGING"
 
       File.open(manifest_path, "w") do |manifest|
+        puts "DEBUG: WRITING TO MANIFEST - #{manifest}"
+        puts "DEBUG: WRITING TO MANIFEST THESE ASSETS - #{assets}"
         manifest.write(assets.to_h.to_json)
       end
 
@@ -90,6 +100,7 @@ module Breakfast
     private
 
     def update_cache!
+      puts "DEBUG: UPDATING CACHE"
       @cache = JSON.parse(File.read(manifest_path))
     end
 
