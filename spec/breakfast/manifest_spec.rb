@@ -41,6 +41,16 @@ RSpec.describe Breakfast::Manifest do
     expect(number_of_files(output_dir)).to eq(1)
   end
 
+  it "will fingerprint assets that match the fingerprint regex somewhere else in their filename" do
+    matching_regex_folder_name = "folder-aaaa11112222333444455556666bbbb8"
+    Dir.mkdir("#{output_dir}/#{matching_regex_folder_name}/")
+    File.open("#{output_dir}/#{matching_regex_folder_name}/app.js", "w")
+
+    manifest = Breakfast::Manifest.new(base_dir: output_dir)
+    manifest.digest!
+    expect(number_of_files(output_dir)).to eq(2)
+  end
+
   it "will find an existing manifest" do
     File.open("#{output_dir}/.breakfast-manifest-869269cdf1773ff0dec91bafb37310ea.json", "w") do |file|
       file.write({ "app.js" => "app-abc123.js" }.to_json)

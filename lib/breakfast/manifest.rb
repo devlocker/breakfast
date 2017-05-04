@@ -6,7 +6,7 @@ module Breakfast
   class Manifest
     MANIFEST_REGEX = /^\.breakfast-manifest-[0-9a-f]{32}.json$/
     SPROCKETS_MANIFEST_REGEX = /^\.sprockets-manifest-[0-9a-f]{32}.json$/
-    FINGERPRINT_REGEX = /-[0-9a-f]{32}./
+    FINGERPRINT_REGEX = /-[0-9a-f]{32}\./
 
     attr_reader :base_dir, :manifest_path, :cache
     def initialize(base_dir:)
