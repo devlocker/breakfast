@@ -17,6 +17,10 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
+### Latest Patch `0.6.0`
+#### Fixed
+- Potential Heroku bug where assets would be cleared out on deploy.
+
 ### Latest Release `0.6.0`
 #### Fixed
 - Puma hanging in clustered mode. Breakfast would fail to cleanly exit on Puma

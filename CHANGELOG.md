@@ -1,5 +1,10 @@
 # CHANGE LOG
 
+### 0.6.1 - 2017-05-04
+#### Fixed
+- Potential Heroku bug where assets would be cleared out on deploy.
+
+
 ### 0.6.0 - 2017-03-12
 #### Upgrading to `0.6.0` from `0.5.x`
 - Update gem with `bundle update breakfast`
