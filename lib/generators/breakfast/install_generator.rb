@@ -61,7 +61,7 @@ module Breakfast
 
       def install_required_packages
         run "yarn add actioncable breakfast-rails jquery jquery-ujs turbolinks"
-        run "yarn add --dev brunch babel brunch clean-css-brunch sass-brunch uglify-js-brunch"
+        run "yarn add --dev brunch babel babel-brunch clean-css-brunch sass-brunch uglify-js-brunch"
       end
 
       def create_directory_structure
