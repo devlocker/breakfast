@@ -1,5 +1,12 @@
 # CHANGE LOG
 
+### 0.6.2 - 2017-05-11
+#### Fixed
+- Typo in install generator. Add brunch-babel package
+
+  @haffla
+
+
 ### 0.6.1 - 2017-05-04
 #### Fixed
 - Potential Heroku bug where assets would be cleared out on deploy.

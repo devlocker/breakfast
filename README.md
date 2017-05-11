@@ -17,9 +17,9 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
-### Latest Patch `0.6.0`
+### Latest Patch `0.6.2`
 #### Fixed
-- Potential Heroku bug where assets would be cleared out on deploy.
+- Typo in install generator. Add brunch-babel package
 
 ### Latest Release `0.6.0`
 #### Fixed
@@ -49,6 +49,9 @@ View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/mast
 
 *Note* If you are deploying with Capistrano then Yarn is expected to be
 installed on the hosts your are deploying to.
+
+### Changes
+See list of changes between versions in the CHANGELOG
 
 ### Contributing
 Bug reports and pull requests are welcome on GitHub at
