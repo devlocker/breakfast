@@ -52,13 +52,7 @@ class LiveReloader {
   htmlReload(strategy) {
     switch (strategy) {
       case 'turbolinks':
-        const location = window.top.location;
-
-        if (this.turbolinksAvailable() && !this.onErrorPage()) {
-          Turbolinks.visit(location);
-        } else {
-          location.reload();
-        }
+        this.reloadTurbolinks();
         break;
       case 'wiselinks':
         this.reloadWiselinks();
@@ -74,17 +68,11 @@ class LiveReloader {
   rubyReload(strategy) {
     switch (strategy) {
       case 'turbolinks':
-        const location = window.top.location;
-
-        if (this.turbolinksAvailable() && !this.onErrorPage()) {
-          Turbolinks.visit(location);
-        } else {
-          location.reload();
-        }
+        this.reloadTurbolinks();
         break;
       case 'wiselinks':
-          this.reloadWiselinks();
-          break;
+        this.reloadWiselinks();
+        break;
       case 'page':
         window.top.location.reload();
         break;
@@ -93,20 +81,22 @@ class LiveReloader {
     }
   }
 
-  turbolinksAvailable() {
-    return (typeof Turbolinks !== 'undefined');
-  }
+  reloadTurbolinks() {
+    const location = window.top.location;
 
-  wiselinksAvailable() {
-      return (typeof wiselinks !== 'undefined');
+    if (typeof Turbolinks !== 'undefined' && !this.onErrorPage()) {
+      Turbolinks.visit(location);
+    } else {
+      location.reload();
+    }
   }
 
   reloadWiselinks() {
-      if (this.wiselinksAvailable() && !this.onErrorPage()) {
-          wiselinks.reload();
-      } else {
-          window.top.location.reload();
-      }
+    if (typeof wiselinks !== 'undefined' && !this.onErrorPage()) {
+      wiselinks.reload();
+    } else {
+      window.top.location.reload();
+    }
   }
   // If user is on an error page and they fix the error and re-render using
   // turbolinks than the CSS from the Rails error page will hang around. Will
