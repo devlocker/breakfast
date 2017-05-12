@@ -25,7 +25,11 @@ class StatusBar {
 
     if (typeof Turbolinks !== 'undefined') {
       eventName = 'turbolinks:load';
-    } else {
+    }
+    else if(typeof wiselinks !== 'undefined') {
+      eventName = 'page:done';
+    }
+    else {
       eventName = 'DOMContentLoaded';
     }
 
@@ -95,6 +99,7 @@ class StatusBar {
         <div class="breakfast-menu">
           ${ this.renderLink('html', 'page', 'Page Reload') }
           ${ this.renderLink('html', 'turbolinks', 'Turbolinks Reload') }
+          ${ this.renderLink('html', 'wiselinks', 'Wiselinks Reload') }
           ${ this.renderLink('html', 'off', 'Off') }
         </div>
       </div>
@@ -104,6 +109,7 @@ class StatusBar {
         <div class="breakfast-menu">
           ${ this.renderLink('rb', 'page', 'Page Reload') }
           ${ this.renderLink('rb', 'turbolinks', 'Turbolinks Reload') }
+          ${ this.renderLink('rb', 'wiselinks', 'Wiselinks Reload') }
           ${ this.renderLink('rb', 'off', 'Off') }
         </div>
       </div>

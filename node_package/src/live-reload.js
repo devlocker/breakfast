@@ -60,6 +60,9 @@ class LiveReloader {
           location.reload();
         }
         break;
+      case 'wiselinks':
+        this.reloadWiselinks();
+        break;
       case 'page':
         window.top.location.reload();
         break;
@@ -79,6 +82,9 @@ class LiveReloader {
           location.reload();
         }
         break;
+      case 'wiselinks':
+          this.reloadWiselinks();
+          break;
       case 'page':
         window.top.location.reload();
         break;
@@ -89,6 +95,18 @@ class LiveReloader {
 
   turbolinksAvailable() {
     return (typeof Turbolinks !== 'undefined');
+  }
+
+  wiselinksAvailable() {
+      return (typeof wiselinks !== 'undefined');
+  }
+
+  reloadWiselinks() {
+      if (this.wiselinksAvailable() && !this.onErrorPage()) {
+          wiselinks.reload();
+      } else {
+          window.top.location.reload();
+      }
   }
   // If user is on an error page and they fix the error and re-render using
   // turbolinks than the CSS from the Rails error page will hang around. Will
