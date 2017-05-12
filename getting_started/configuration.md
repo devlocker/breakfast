@@ -75,7 +75,7 @@ config.breakfast.ruby_reload_strategy = :off
 
 # Where compiled assets get outputted. Should match
 # the public option in brunch_config.js
-config.breakfast.asset_output_folders = [Rails.root.join("public")]
+config.breakfast.asset_output_folder = Rails.root.join("public", "assets")
 
 
 # Where your views and ruby source code is located.
