@@ -23,13 +23,11 @@ class StatusBar {
   init() {
     let eventName;
 
-    if (typeof Turbolinks !== 'undefined') {
+    if (this.settings.turbolinksEnabled()) {
       eventName = 'turbolinks:load';
-    }
-    else if(typeof wiselinks !== 'undefined') {
+    } else if (this.settings.wiselinksEnabled()) {
       eventName = 'page:done';
-    }
-    else {
+    } else {
       eventName = 'DOMContentLoaded';
     }
 
@@ -98,8 +96,8 @@ class StatusBar {
         <span>html: </span><span class="breakfast-type">${ this.settings.strategies.html }</span>
         <div class="breakfast-menu">
           ${ this.renderLink('html', 'page', 'Page Reload') }
-          ${ this.renderLink('html', 'turbolinks', 'Turbolinks Reload') }
-          ${ this.renderLink('html', 'wiselinks', 'Wiselinks Reload') }
+          ${ this.renderLink('html', 'turbolinks', 'Turbolinks Reload', this.settings.turbolinksEnabled()) }
+          ${ this.renderLink('html', 'wiselinks', 'Wiselinks Reload', this.settings.wiselinksEnabled()) }
           ${ this.renderLink('html', 'off', 'Off') }
         </div>
       </div>
@@ -108,16 +106,20 @@ class StatusBar {
         <span>ruby: </span><span class="breakfast-type">${ this.settings.strategies.rb }</span>
         <div class="breakfast-menu">
           ${ this.renderLink('rb', 'page', 'Page Reload') }
-          ${ this.renderLink('rb', 'turbolinks', 'Turbolinks Reload') }
-          ${ this.renderLink('rb', 'wiselinks', 'Wiselinks Reload') }
+          ${ this.renderLink('rb', 'turbolinks', 'Turbolinks Reload', this.settings.turbolinksEnabled()) }
+          ${ this.renderLink('rb', 'wiselinks', 'Wiselinks Reload', this.settings.wiselinksEnabled()) }
           ${ this.renderLink('rb', 'off', 'Off') }
         </div>
       </div>
     `);
   }
 
-  renderLink(type, strategy, text) {
+  renderLink(type, strategy, text, enabled = true) {
     const active = this.settings.strategies[type] === strategy;
+
+    if (!enabled) {
+      return '';
+    }
 
     return (`
       <a

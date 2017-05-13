@@ -43,6 +43,14 @@ class Settings {
   storedSettings() {
     return (JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || {});
   }
+
+  turbolinksEnabled() {
+    return typeof Turbolinks !== 'undefined';
+  }
+
+  wiselinksEnabled() {
+    return typeof Wiselinks !== 'undefined';
+  }
 }
 
 module.exports = Settings;

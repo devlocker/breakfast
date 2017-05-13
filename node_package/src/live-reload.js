@@ -84,7 +84,7 @@ class LiveReloader {
   reloadTurbolinks() {
     const location = window.top.location;
 
-    if (typeof Turbolinks !== 'undefined' && !this.onErrorPage()) {
+    if (this.settings.turbolinksEnabled() && !this.onErrorPage()) {
       Turbolinks.visit(location);
     } else {
       location.reload();
@@ -92,7 +92,7 @@ class LiveReloader {
   }
 
   reloadWiselinks() {
-    if (typeof wiselinks !== 'undefined' && !this.onErrorPage()) {
+    if (this.settings.wiselinksEnabled() && !this.onErrorPage()) {
       wiselinks.reload();
     } else {
       window.top.location.reload();
