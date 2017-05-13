@@ -20,6 +20,9 @@ View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/mast
 ### Latest Patch `0.6.2`
 #### Fixed
 - Typo in install generator. Add brunch-babel package
+- Add support for [Wiselinks](https://github.com/igor-alexandrov/wiselinks)
+  reloader.
+  [_@haffla_](https://github.com/devlocker/breakfast/pull/23)
 
 ### Latest Release `0.6.0`
 #### Fixed
