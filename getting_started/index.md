@@ -61,11 +61,9 @@ $ rails generate breakfast:install
 	create  app/frontend/css
 	create  app/frontend/images
 	create  app/frontend/js
-	create  app/frontend/vendor
 	create  app/frontend/js/app.js
 	create  app/frontend/css/app.scss
 	create  app/frontend/images/.gitkeep
-	create  app/frontend/vendor/.gitkeep
 		 run  yarn install from "."
 ~~~
 
@@ -89,7 +87,7 @@ info: compiled 6 files into 3 files in 808ms
 ~~~
 
 This first build is combining the JS and CSS into files specified in the
-`brunch-config`. By default these will be `app.js`, `vendor.js` and `app.css`.
+`brunch-config`. By default these will be `app.js` and `app.css`.
 
 To get them loaded onto the page use the `javascript_include_tag`,
 `stylesheet_link_tag` and `image_tag` just like you normally would.
@@ -99,7 +97,6 @@ To get them loaded onto the page use the `javascript_include_tag`,
 
 <head>
   <%= stylesheet_link_tag "app.css" %>
-  <%= javascript_include_tag "vendor.js" %>
   <%= javascript_include_tag "app.js" %>
   <script>require('frontend/js/app').init();</script>
   <%= breakfast_autoreload_tag %>
