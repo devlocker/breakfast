@@ -60,8 +60,20 @@ module Breakfast
       end
 
       def install_required_packages
-        run "yarn add actioncable breakfast-rails jquery jquery-ujs turbolinks"
-        run "yarn add --dev brunch babel babel-brunch clean-css-brunch sass-brunch uglify-js-brunch"
+        packages = %w(
+          actioncable
+          babel
+          babel-brunch
+          breakfast-rails
+          brunch
+          clean-css-brunch
+          jquery
+          jquery-ujs
+          sass-brunch
+          turbolinks
+          uglify-js-brunch
+        )
+        run "yarn add #{packages.join(' ')}"
       end
 
       def create_directory_structure
