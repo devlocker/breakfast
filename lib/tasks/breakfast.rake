@@ -58,7 +58,10 @@ end
 
 if Rake::Task.task_defined?("assets:precompile")
   Rake::Task["assets:precompile"].enhance do
-    Rake::Task["breakfast:yarn:install"].execute
+    unless Rake::Task.task_defined?("yarn:install")
+      # Rails 5.1 includes a yarn install command - don't yarn install twice.
+      Rake::Task["breakfast:yarn:install"].execute
+    end
     Rake::Task["breakfast:assets:compile"].execute
   end
 end
