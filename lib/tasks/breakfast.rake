@@ -66,7 +66,7 @@ if Rake::Task.task_defined?("assets:precompile")
   end
 else
   Rake::Task.define_task(
-    "assets:precompile" => ["breakfast:yarn", "breakfast:assets:compile"]
+    "assets:precompile" => ["breakfast:yarn:install", "breakfast:assets:compile"]
   )
 end
 
