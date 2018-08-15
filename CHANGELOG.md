@@ -4,6 +4,14 @@
 
 #### Fixed
 
+- Typo in install rake task
+
+  @karmiclychee
+
+### 0.6.3 - 2018-08-14
+
+#### Fixed
+
 - Potential double yarn install
 - assets:precompile not defined properly (when no Sprockets)
 
