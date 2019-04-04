@@ -17,13 +17,13 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
-### Latest Patch `0.6.4`
+### Latest Patch `0.6.5`
 
 #### Fixed
 
-- Typo in install rake task
+- Make Rake Task System Calls Fail Loudly
 
-  [@karmiclycheea](https://github.com/devlocker/breakfast/pull/28)
+  [@mcclayton](https://github.com/devlocker/breakfast/pull/30)
 
 ### Latest Release `0.6.0`
 

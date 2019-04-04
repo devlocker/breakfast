@@ -1,5 +1,13 @@
 # CHANGE LOG
 
+### 0.6.5 - 2019-04-04
+
+#### Changes
+
+- Make Rake Task System Calls Fail Loudly
+
+  @mcclayton
+
 ### 0.6.3 - 2018-08-14
 
 #### Fixed
