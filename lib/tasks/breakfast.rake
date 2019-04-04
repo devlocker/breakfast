@@ -12,12 +12,12 @@ namespace :breakfast do
 
     desc "Build assets for production"
     task build_production: :environment do
-      system "NODE_ENV=production ./node_modules/brunch/bin/brunch build --production"
+      Breakfast.call_system "NODE_ENV=production ./node_modules/brunch/bin/brunch build --production"
     end
 
     desc "Build assets"
     task build: :environment do
-      system "./node_modules/brunch/bin/brunch build"
+      Breakfast.call_system "./node_modules/brunch/bin/brunch build"
     end
 
     desc "Add a digest to non-fingerprinted assets"
@@ -51,7 +51,7 @@ namespace :breakfast do
   namespace :yarn do
     desc "Install package.json dependencies with Yarn"
     task :install do
-      system "yarn"
+      Breakfast.call_system "yarn"
     end
   end
 end
@@ -85,5 +85,11 @@ module Breakfast
         ERROR
       )
     end
+  end
+
+  SystemCallError = Class.new(StandardError)
+
+  def self.call_system(cmd)
+    raise SystemCallError, "Failed to execute system command: \"#{cmd}\"" unless system(cmd)
   end
 end
