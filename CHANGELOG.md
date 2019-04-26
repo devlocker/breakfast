@@ -1,5 +1,13 @@
 # CHANGE LOG
 
+### 0.6.6 - 2019-04-26
+
+#### Changes
+
+- Support Rails 6 by removing constraint on ActionCable
+
+  @katalyst
+
 ### 0.6.5 - 2019-04-04
 
 #### Changes

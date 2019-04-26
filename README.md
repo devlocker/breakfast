@@ -17,13 +17,13 @@ See the official docs at
 
 View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/master/CHANGELOG.md)
 
-### Latest Patch `0.6.5`
+### Latest Patch `0.6.6`
 
 #### Fixed
 
-- Make Rake Task System Calls Fail Loudly
+- Support Rails 6 by removing constraint on ActionCable
 
-  [@mcclayton](https://github.com/devlocker/breakfast/pull/30)
+  [@katalyst](https://github.com/devlocker/breakfast/pull/32)
 
 ### Latest Release `0.6.0`
 
