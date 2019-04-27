@@ -23,7 +23,7 @@ View updates in the [CHANGELOG](https://github.com/devlocker/breakfast/blob/mast
 
 - Support Rails 6 by removing constraint on ActionCable
 
-  [@katalyst](https://github.com/devlocker/breakfast/pull/32)
+  [@mattr](https://github.com/devlocker/breakfast/pull/32)
 
 ### Latest Release `0.6.0`
 

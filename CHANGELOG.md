@@ -6,7 +6,7 @@
 
 - Support Rails 6 by removing constraint on ActionCable
 
-  @katalyst
+  @mattr
 
 ### 0.6.5 - 2019-04-04
 
